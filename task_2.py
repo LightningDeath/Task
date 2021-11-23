@@ -1,31 +1,46 @@
-import math
+# Вычислить сумму тех чисел из этого списка, сумма цифр которых
+# делится нацело на 7. Например, число «19 ^ 3 = 6859» будем включать
+# в сумму, так как 6 + 8 + 5 + 9 = 28 – делится нацело на 7.
+# Внимание: использовать только арифметические операции!
+# К каждому элементу списка добавить 17 и заново вычислить
+# сумму тех чисел из этого списка, сумма цифр которых делится нацело на 7.
 
-while True:
-    try:
-        second = int(input('Введите секунды:'))
-    except ValueError:
-        print("Error! Это не число, попробуйте снова.")
-    else:
-        time = [86400, 3600, 60]
-        n = 0
-        if second >= time[n]:
-            days = math.floor(second / time[n])
-            hour = math.floor((second - days * time[n]) / time[n + 1])
-            minute = math.floor(((second - days * time[n]) - hour * time[n + 1]) / time[n + 2])
-            second = second - (days * time[0] + hour * time[1] + minute * time[2])
-            print(days, 'days', hour, 'hour', minute, 'minute', second, 'second')
-        else:
-            if second >= time[n + 1]:
-                hour = math.floor(second / time[n])
-                minute = math.floor((second - hour * time[n]) / time[n + 1])
-                second = hour - minute * time[n + 1]
-                print(hour, ' hour', minute, 'minute', second, 'second')
-            else:
-                if second >= time[n + 2]:
-                    minute = math.floor(second / time[n])
-                    second = second - minute * time[n]
-                    print(minute, 'minute', second, 'second')
-                else:
-                    print(second, 'сек.')
-        break
-
+result = []
+i = 1
+C = 0
+summ = 0
+second_summ = 0
+# цикл для поиска четных чисел
+while i <= 1000:
+    if i % 2 == 0:
+        n = i ** 3
+        new_number = n
+        result_number = 0
+        A = 0
+        # сразу считаем сумму чисел в числе:)
+        while A != len(str(n)):
+            last_number = new_number % 10
+            new_number = new_number // 10
+            result_number += last_number
+            A += 1
+        # и здесь же проверяем на соответствие условию задачи
+        if (result_number % 7) == 0:
+            result.append(result_number)
+            summ += result_number
+    i += 1
+print('Сумма возведенных в куб четных чисел от 1 до 1000 и делящихся целочисленно на 7 равна: ', summ)
+# производим проход по полученному списку с добавлением 17 к каждому элементу
+for B in result:
+    n = B + 17
+    new_number = n
+    result_number = 0
+    while C != len(str(n)):
+        last_number = new_number % 10
+        new_number = new_number // 10
+        result_number += last_number
+        C += 1
+    # проверка на соответствие условию задачи
+    if (result_number % 7) == 0:
+        second_summ += result_number
+print('Сумма возведенных в куб четных чисел от 1 до 1000 с добавлением к ним 17'
+      ' и делящихся целочисленно на 7 равна: ', second_summ)
