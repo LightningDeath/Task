@@ -4,7 +4,7 @@ while True:
     try:
         second = int(input('Введите секунды:'))
     except ValueError:
-        print("Error! Это не число, попробуйте снова.")
+        print("Ошибка! Это не число, попробуйте снова.")
     else:
         time = [86400, 3600, 60]
         n = 0
